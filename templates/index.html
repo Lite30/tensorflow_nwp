@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Word Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --background: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem;
+            display: grid;
+            place-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 420px;
+        }
+        
+        .card {
+            background: var(--card);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            color: var(--text);
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 0.5rem;
+        }
+        
+        button:hover {
+            background: var(--primary-dark);
+        }
+        
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .result h2 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Next Word Predictor</h1>
+            
+            <form method="POST">
+                <div class="form-group">
+                    <label for="seed_text">Enter seed text</label>
+                    <input type="text" id="seed_text" name="seed_text" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="num_words">Words to predict</label>
+                    <input type="number" id="num_words" name="num_words" min="1" value="3" required>
+                </div>
+                
+                <button type="submit">Generate Prediction</button>
+            </form>
+            
+            {% if result %}
+            <div class="result">
+                <h2>Generated Text</h2>
+                <p>{{ result }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
