@@ -67,7 +67,7 @@ The system requires these Python packages:
 
 ## Project Structure
 ```
-202101659/
+root/
 ├── app.py                 # Main application
 ├── main.py                # Prediction model
 ├── friends1.txt           # Dataset
